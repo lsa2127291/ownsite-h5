@@ -10,4 +10,4 @@ gulpTaskList.forEach(function (taskfile) {
   if (suffix === 'js') { // 过滤其它文件
     require('./gulp/' + taskfile)(gulp);
   }
-);
+});
