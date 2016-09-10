@@ -1,0 +1,74 @@
+<script>
+  /*
+   viewport设置修改自手淘flexible方案
+   以iphone6为基准进行设计,px与rem比值为50:1
+   对与其他机型进行一定程度的尺寸自适应调整
+   可以解决iphone设备1px像素问题
+   */
+  (function () {
+    var docEl = document.documentElement;
+    var tid;
+    var setViewport = function(scale) {
+      var $viewport = document.querySelector('meta[name="viewport"]');
+      // onresize事件触发时meta已存在
+      if ($viewport) {
+        $viewport.setAttribute(
+          'content',
+          'initial-scale=' + scale +
+          ',maximum-scale=' + scale +
+          ',minimum-scale=' + scale +
+          ',user-scalable=no');
+      } else {
+        var metaViewport = '<meta name="viewport" content="initial-scale=' + scale +
+          ',maximum-scale=' + scale +
+          ',minimum-scale=' + scale +
+          ',user-scalable=no" />';
+        document.write(metaViewport);
+      }
+    };
+
+    var refreshRem = function (dpr) {
+      // screen.width 返回屏幕的物理像素，60代表480pt的设备
+      var size = screen.width / 7.5;
+      if (size > 60) {
+        size = 60;
+      }
+      console.log(screen.width);
+      docEl.style.fontSize = size * dpr + 'px';
+    };
+
+    var updateViewport = function() {
+      var isIPhone = window.navigator.appVersion.match(/iphone/gi);
+      var devicePixelRatio = window.devicePixelRatio;
+      var dpr = 1;
+      if (isIPhone) {
+        // iOS下，对于2和3的屏，用2、3倍的方案，其余的用1倍方案
+        if (devicePixelRatio >= 3) {
+          dpr = 3;
+        } else if (devicePixelRatio >= 2){
+          dpr = 2;
+        }
+      }
+      var scale = 1 / dpr;
+      setViewport(scale);
+      refreshRem(dpr);
+    };
+
+    // 浏览器窗口大小变化或者屏幕旋转，均会触发两次onresize事件，而第二次所得的窗口大小才是正确的，
+    // 所以监听到onresize事件时，作了一个300毫秒的延迟处理。
+    window.addEventListener('resize', function() {
+      clearTimeout(tid);
+      tid = setTimeout(updateViewport, 300);
+    }, false);
+
+    window.addEventListener('pageshow', function(e) {
+      if (e.persisted) {
+        console.log('enter pageshow');
+        clearTimeout(tid);
+        tid = setTimeout(updateViewport, 300);
+      }
+    }, false);
+
+    updateViewport();
+  })();
+</script>
