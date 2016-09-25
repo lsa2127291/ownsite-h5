@@ -83,13 +83,13 @@ var config = {
     }]
   },
   plugins: ([
-    new ProgressBarPlugin(),
-    // 将环境变量注入到打包的js中，在打包时可以使用变量判断打包环境
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(env)
-    }),
-    // 将第三方库打包并从构建中分离出来
-    new webpack.DllReferencePlugin({
+      new ProgressBarPlugin(),
+      // 将环境变量注入到打包的js中，在打包时可以使用变量判断打包环境
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(env)
+      }),
+      // 将第三方库打包并从构建中分离出来
+      new webpack.DllReferencePlugin({
         context: __dirname,
         /**
          * 在这里引入 manifest 文件
