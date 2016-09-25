@@ -1,2 +1,8 @@
-.idea
+.DS_Store
 node_modules
+npm-debug.log
+*.sw*
+.idea/*
+*.zip
+.sass-cache
+build

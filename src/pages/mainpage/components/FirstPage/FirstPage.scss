@@ -1,0 +1,46 @@
+.first-page {
+  display: flex;
+  flex-flow: column;
+  section {
+    display: flex;
+    flex: 1;
+    flex-flow: column;
+    margin-left: .2rem;
+    margin-right: .2rem;
+    &>header {
+      font-weight: bold;
+      height: .8rem;
+      line-height: .8rem;
+      font-size: .32rem;
+      border-bottom: .02rem solid #e5e5e5;
+    }
+    article {
+      display: flex;
+      flex-flow: column;
+      &>header {
+        font-weight: bold;
+        font-size: .3rem;
+        color: #225599;
+        margin-top: .2rem;
+        transition: color .2s;
+        &:active {
+          color: #2277cc;
+        }
+      }
+      &>p {
+        font-size: .26rem;
+        margin-top: .2rem;
+        -webkit-margin-after: 0;
+        word-break: break-all;
+      }
+      &>footer {
+        margin-top: .1rem;
+        padding-bottom: .1rem;
+        font-size: .24rem;
+        color: #999;
+        white-space: nowrap;
+        border-bottom: .01rem solid #e5e5e5;
+      }
+    }
+  }
+}

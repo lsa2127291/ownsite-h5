@@ -1,0 +1,46 @@
+$nav-bar-height : 3rem;
+$select-container-height : 0.6rem;
+.nav-bar {
+  position: relative;
+  height: $nav-bar-height;
+  display: flex;
+  flex-flow: column;
+  border-bottom: .01rem solid #ddd;
+  .logo {
+    flex: auto;
+    text-align: center;
+    background-color: #1C9A71;
+    color: white;
+    line-height: $nav-bar-height - $select-container-height;
+    font-size: .8rem;
+    font-family: English;
+    i {
+      position: absolute;
+      right: .4rem;
+      top: .4rem;
+      font-size: .32rem;
+      color: #e5e5e5;
+      transition: color .2s;
+      &:active {
+        color: #d6d6d6;
+      }
+    }
+  }
+  .select-container {
+    display: flex;
+    height: $select-container-height;
+    align-items: center;
+    background: #008cb4;
+    div {
+      flex: 1;
+      font-weight: bolder;
+      font-size: .32rem;
+      text-align: center;
+      color: white;
+      transition: color .2s;
+      &:active {
+        color: #e5e5e5;
+      }
+    }
+  }
+}

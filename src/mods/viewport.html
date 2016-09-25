@@ -1,7 +1,7 @@
 <script>
   /*
    viewport设置修改自手淘flexible方案
-   以iphone6为基准进行设计,px与rem比值为50:1
+   以iphone6为基准进行设计,px与rem比值为100:1，设计稿统一采用物理像素
    对与其他机型进行一定程度的尺寸自适应调整
    可以解决iphone设备1px像素问题
    */
@@ -33,7 +33,6 @@
       if (size > 60) {
         size = 60;
       }
-      console.log(screen.width);
       docEl.style.fontSize = size * dpr + 'px';
     };
 
@@ -63,7 +62,6 @@
 
     window.addEventListener('pageshow', function(e) {
       if (e.persisted) {
-        console.log('enter pageshow');
         clearTimeout(tid);
         tid = setTimeout(updateViewport, 300);
       }
