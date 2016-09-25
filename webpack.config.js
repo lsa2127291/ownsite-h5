@@ -88,6 +88,7 @@ var config = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(env)
     }),
+    // 将第三方库打包并从构建中分离出来
     new webpack.DllReferencePlugin({
         context: __dirname,
         /**
