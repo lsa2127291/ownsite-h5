@@ -31,12 +31,13 @@ $select-container-height : 0.6rem;
     height: $select-container-height;
     align-items: center;
     background: #008cb4;
-    div {
+    a {
       flex: 1;
       font-weight: bolder;
       font-size: .32rem;
       text-align: center;
       color: white;
+      text-decoration: none;
       transition: color .2s;
       &:active {
         color: #e5e5e5;
