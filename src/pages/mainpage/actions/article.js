@@ -1,7 +1,7 @@
 import 'isomorphic-fetch';
-import {HOST} from 'common/constants';
+import {HOST} from '../../../modules/common/constants';
 if (process.env.NODE_ENV !== 'production') {
-  require('mock/article/article');
+  require('../../../modules/mock/article/article');
 }
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 function receivePosts (articles) {

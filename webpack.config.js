@@ -8,7 +8,7 @@ var ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 var env = process.env.NODE_ENV || 'development';
 // 生成环境是否需要sourceMap
 var sourceMap = process.env.SOURCE_MAP || true;
-var js = glob.sync('./src/pages/**/index.js').reduce(function (prev, curr) {
+var js = glob.sync('./src/pages/*/index.js').reduce(function (prev, curr) {
   prev[curr.slice(6, -3)] = [curr];
   return prev;
 }, {});
@@ -37,10 +37,10 @@ var cssModulesLoader = (function () {
   if (env === 'production') {
     return ExtractTextPlugin.extract(
       'style' + enableSourceMap,
-      'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]!resolve-url!sass' + enableSourceMap);
+      'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!resolve-url!sass' + enableSourceMap);
   } else {
     return ['style',
-      'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+      'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
       'resolve-url',
       'sass'].join('!');
   }
@@ -48,11 +48,11 @@ var cssModulesLoader = (function () {
 })();
 var config = {
   entry: js,
-  resolve: {
-    root: [
-      path.resolve('./src/modules')
-    ]
-  },
+  //resolve: {
+  //  root: [
+  //    path.resolve('./src/modules')
+  //  ]
+  //},
   output: {
     path: path.resolve('./build'),
     filename: '[name].js'

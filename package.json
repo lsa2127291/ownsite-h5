@@ -2,6 +2,7 @@
   "name": "excellent",
   "version": "0.0.1",
   "devDependencies": {
+    "babel-cli": "^6.16.0",
     "babel-core": "^6.13.2",
     "babel-eslint": "^6.1.2",
     "babel-loader": "^6.2.5",
@@ -35,11 +36,14 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.13.0",
+    "css-modules-require-hook": "^4.0.5",
+    "ejs": "^2.5.2",
     "fetch-mock": "^5.1.5",
     "isomorphic-fetch": "^2.2.1",
     "koa": "^1.2.4",
     "koa-router": "^5.4.0",
     "koa-static": "^2.0.0",
+    "lodash": "^4.16.3",
     "react": "^15.3.1",
     "react-css-modules": "^3.7.10",
     "react-dom": "^15.3.1",
@@ -47,9 +51,13 @@
     "react-redux": "^4.4.5",
     "react-router": "^2.6.1",
     "redux": "^3.5.2",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "thunkify": "^2.1.2",
+    "xtemplate": "^4.6.0",
+    "xtpl": "^3.3.0"
   },
   "scripts": {
+    "start": "babel-node server/index.js",
     "dev": "webpack-dev-server",
     "build": "gulp build",
     "dll": "webpack --config webpack.dll.config",

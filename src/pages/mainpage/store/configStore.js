@@ -6,7 +6,7 @@ export default initialState => createStore(
   initialState,
   compose(
     applyMiddleware(thunkMiddleware),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
+    global.devToolsExtension ? global.devToolsExtension() : f => f
   )
 );
 

@@ -1,5 +1,5 @@
-import App from '../cotainers/App';
-import FirstPage from '../cotainers/FirstPage';
+import App from '../containers/App';
+import FirstPage from '../containers/FirstPage';
 import Blog from '../components/Blog/Blog';
 import Experiment from '../components/Experiment/Experiment';
 const routes = {
