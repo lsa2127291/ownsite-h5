@@ -1,20 +1,19 @@
+// polyfill webpack require.ensure
+if (typeof require.ensure !== 'function') require.ensure = (d, c) => c(require);
 import App from '../containers/App';
 import FirstPage from '../containers/FirstPage';
-import Blog from '../components/Blog/Blog';
-import Experiment from '../components/Experiment/Experiment';
-const routes = {
-  path: '/',
-  component: App,
-  indexRoute: { component: FirstPage },
-  childRoutes: [
-    {
-      path: 'blog',
-      component: Blog
-    },
-    {
-      path: 'experiment',
-      component: Experiment
+export default function (store) {
+  return {
+    path: '/',
+    component: App,
+    indexRoute: {component: FirstPage},
+    getChildRoutes (location, cb) {
+      require.ensure([], (require) => {
+        cb(null, [
+          require('./blog').default(store),
+          require('./experiment').default(store)
+        ]);
+      });
     }
-  ]
-};
-export default routes;
+  };
+}

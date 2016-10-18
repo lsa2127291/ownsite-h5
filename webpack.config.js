@@ -142,6 +142,8 @@ if (env === 'production') {
 
 if (env === 'development') {
   config.debug = true;
+  config.output.chunkFilename = '[id].chunk.js';
+  config.output.publicPath = 'http://localhost:8080/';
   // 只返回首个构建错误的信息, 同时终止webpack运行
   config.bail = false;
   config.devtool = '#cheap-module-eval-source-map';
@@ -151,21 +153,21 @@ if (env === 'development') {
     // 不会让错误代码阻碍构建执行
     new webpack.NoErrorsPlugin()
   ]);
-  config.devServer = {
-    host: '0.0.0.0',
-    contentBase: path.resolve('./build'),
-    // 当浏览器不支持historyApi时采用回退方式实现api
-    historyApiFallback: true,
-    // 将webpack-dev-server runtime集成到模块打包文件里，可以实现浏览器与服务器的通信
-    inline: true,
-    // 使用热加载模式
-    hot: true,
-    stats: {
-      // 颜色标记
-      colors: true,
-      // 不打印块信息
-      chunks: false
-    }
-  };
+  //config.devServer = {
+  //  host: '0.0.0.0',
+  //  contentBase: path.resolve('./build'),
+  //  // 当浏览器不支持historyApi时采用回退方式实现api
+  //  historyApiFallback: true,
+  //  // 将webpack-dev-server runtime集成到模块打包文件里，可以实现浏览器与服务器的通信
+  //  inline: true,
+  //  // 使用热加载模式
+  //  hot: true,
+  //  stats: {
+  //    // 颜色标记
+  //    colors: true,
+  //    // 不打印块信息
+  //    chunks: false
+  //  }
+  //};
 }
 module.exports = config;
