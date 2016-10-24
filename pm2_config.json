@@ -1,0 +1,12 @@
+{
+  "apps" : [{
+    "name"        : "server",
+    "script"      : "./server/index.js",
+    "watch"       : true,
+    "exec_interpreter" : "node",
+//    "instance": 4,
+    "exec_mode"  : "fork",
+    "error_file" : "./error.pm2.log",
+    "out_file" : "./out.pm2.log"
+   }]
+}

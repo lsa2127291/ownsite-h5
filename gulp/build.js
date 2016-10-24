@@ -5,7 +5,7 @@ module.exports = function (gulp) {
     cb();
   });
   gulp.task('webpack', function (cb) {
-    webpack(require('../webpack.config'), cb);
+    webpack(require('../webpack/webpack.client.config'), cb);
   });
   gulp.task('build', ['set-env', 'webpack']);
 };

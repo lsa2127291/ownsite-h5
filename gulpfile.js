@@ -3,7 +3,6 @@ var gulp = require('gulp');
 var path = require('path');
 
 var gulpTaskList = require('fs').readdirSync(path.join('./gulp/'));
-
 gulpTaskList.forEach(function (taskfile) {
   var suffix = taskfile.split('.').pop();
 

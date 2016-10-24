@@ -3,11 +3,10 @@ var WebpackDevServer = require('webpack-dev-server');
 var ejs = require('gulp-ejs');
 var gutil = require("gulp-util");
 var path = require('path');
-var injectSrc = require('./modules/injectSrc');
 // 将webpack-dev-server runtime集成到模块打包文件里，可以实现浏览器与服务器的通信
 module.exports = function (gulp) {
-  var config = require('../webpack.config');
   gulp.task('webpack-dev-server', function (cb) {
+    var config = require('../webpack/webpack.client.config');
     Object.keys(config.entry).forEach(function (name) {
       config.entry[name] = ["webpack-dev-server/client?http://0.0.0.0:8080",  "webpack/hot/dev-server"].concat(config.entry[name]);
     });
@@ -31,6 +30,7 @@ module.exports = function (gulp) {
     });
   });
   gulp.task('generate-dev-template', function (cb) {
+    var injectSrc = require('./modules/injectSrc');
     gulp.src('./src/pages/*/index.html').pipe(ejs()).pipe(injectSrc(['index.js'], 'http://localhost:8080/pages')).pipe(gulp.dest('./build/pages/'));
     cb();
   });

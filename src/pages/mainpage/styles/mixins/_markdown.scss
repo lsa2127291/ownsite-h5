@@ -1,0 +1,38 @@
+@mixin markdown($baseSize:14px) {
+  &>h1 {
+    font-size: $baseSize * 1.50;
+  }
+  &>h2 {
+    font-size: $baseSize * 1.30;
+  }
+  &>h3 {
+    font-size: $baseSize * 1.15;
+  }
+  &>h4 {
+    font-size: $baseSize * 1;
+  }
+  &>h5 {
+    font-size: $baseSize * 0.85;
+  }
+  &>h6 {
+    font-size: $baseSize * 0.6;
+  }
+  &>h1,h2,h3,h4,h5,h6 {
+    padding-bottom: $baseSize * 0.4;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  &>blockquote {
+    font-size: $baseSize;
+    background: #f6f6f6;
+    padding: $baseSize * 0.6 $baseSize;
+    margin: $baseSize * 0.6 0 0 0;
+    -webkit-margin-after: 0;
+    word-break: break-all;
+  }
+  &>p {
+    font-size: $baseSize;
+    margin-top: $baseSize;
+    -webkit-margin-after: 0;
+    word-break: break-all;
+  }
+}

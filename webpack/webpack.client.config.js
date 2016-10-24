@@ -94,7 +94,7 @@ var config = {
         /**
          * 在这里引入 manifest 文件
          */
-        manifest: require('./build/vendor/react-manifest.json')
+        manifest: require('../build/vendor/react-manifest.json')
       }),
       new ScriptExtHtmlWebpackPlugin({
         defaultAttribute: 'defer'
@@ -107,6 +107,7 @@ var config = {
 
 if (env === 'production') {
   config.devtool = sourceMap? '#source-map' : false;
+  config.output.publicPath = 'http://localhost:8080/';
   config.output.filename = '[name].[chunkhash].js';
   config.output.chunkFilename = '[id].[chunkhash].js';
   config.plugins = config.plugins.concat([

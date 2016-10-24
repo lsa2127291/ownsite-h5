@@ -8,11 +8,6 @@ class FirstPage extends Component {
     dispatch: PropTypes.func.isRequired
   };
 
-  // componentWillMount () {
-  //  const {dispatch} = this.props;
-  //  dispatch(queryArticles());
-  // }
-
   render () {
     const {articles} = this.props;
     return (

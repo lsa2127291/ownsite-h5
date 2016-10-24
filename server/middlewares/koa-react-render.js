@@ -19,7 +19,6 @@ import ejs from 'ejs';
 import path from 'path';
 import xtpl from 'xtpl';
 import _ from 'lodash';
-import thunkify from 'thunkify';
 module.exports = function (options) {
   return function * (next) {
     // assert(options && options.templatesDir, '[templatesDir] templatesDir is required, please check config!');
@@ -35,15 +34,10 @@ module.exports = function (options) {
       var html = render(
         renderProp
       );
-      var htmlStr;
-      // var renderFile = thunkify(xtpl.renderFile);
-      // yield htmlStr = renderFile(path.join(options.templatesDir, templateName), {html: html});
       var self = this;
       xtpl.renderFile(path.join(options.templatesDir, templateName), {html: html, initState: JSON.stringify(store.getState())}, function (err, htmlStr) {
-        console.log(htmlStr);
         self.body = htmlStr;
       });
-      //this.body = htmlStr;
     };
     yield next;
   }
