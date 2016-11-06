@@ -36,6 +36,7 @@ module.exports = function (options) {
       );
       var self = this;
       xtpl.renderFile(path.join(options.templatesDir, templateName), {html: html, initState: JSON.stringify(store.getState())}, function (err, htmlStr) {
+        console.log('wo w');
         self.body = htmlStr;
       });
     };

@@ -1,0 +1,9 @@
+{
+  "verbose": true,
+  "watch": ["src", "server"],
+  "ignore":["node_modules","gulp","src/pages"],
+  "execMap": {
+    "js": "babel-node"
+  },
+  "legacy-watch":true
+}

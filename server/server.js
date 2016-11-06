@@ -6,16 +6,19 @@ import sass from 'node-sass';
 import configStore from '../src/pages/mainpage/store/configStore';
 import { queryArticles } from '../src/pages/mainpage/actions/article';
 import render from './middlewares/koa-react-render';
+if (process.env.NODE_ENV === 'development') {
+  var listened = false;
+  var browserSync = require('browser-sync').create();
+}
 cssRequireHook({
   generateScopedName: '[name]__[local]___[hash:base64:5]',
   extensions: [ '.scss', '.css' ],
   preprocessCss: data => sass.renderSync({ data }).css
 });
 var app = require('koa')();
-//var router = require('./middlewares/router');
+var router = require('./middlewares/router');
 var createRoutes = require('../src/pages/mainpage/routes').default;
-var http = require('http');
-//app.use(router.routes()).use(router.allowedMethods());
+app.use(router.routes()).use(router.allowedMethods());
 app.use(render({
   templatesDir: './build/pages/',
   componentsDir: '../../src/pages/'
@@ -31,7 +34,7 @@ app.use(function * (next) {
       this.body = err;
     } else if (redirectLocation) {
       this.status = 302;
-       this.redirect(redirectLocation.pathname + redirectLocation.search)
+      this.redirect(redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
       this.render(() => <RouterContext {...renderProps} />, store, 'mainpage/index.html');
     } else {
@@ -42,3 +45,15 @@ app.use(function * (next) {
   yield next;
 });
 app.listen(8000);
+if (process.env.NODE_ENV === 'development') {
+  if(!listened) {
+    browserSync.init({
+      proxy: 'localhost:8000',
+      browser: 'chrome'
+    });
+    browserSync.watch('src/pages/**').on('change', browserSync.reload);
+    listened = true;
+  }
+}
+
+

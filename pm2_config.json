@@ -3,10 +3,13 @@
     "name"        : "server",
     "script"      : "./server/index.js",
     "watch"       : true,
+//    "ignore_watch" : ["node_modules"],
     "exec_interpreter" : "node",
-//    "instance": 4,
-    "exec_mode"  : "fork",
-    "error_file" : "./error.pm2.log",
-    "out_file" : "./out.pm2.log"
-   }]
+//    "instances": "4",
+    "exec_mode"  : "fork_mode",
+    "error_file" : "./pm2.log",
+    "out_file" : "./pm2.log",
+//    "merge_logs": true,
+    "log_date_format" : "YYYY-MM-DD HH:mm Z"
+  }]
 }

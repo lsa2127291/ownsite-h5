@@ -11,6 +11,7 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
     "babel-runtime": "^6.11.6",
+    "browser-sync": "^2.17.5",
     "css-loader": "^0.23.1",
     "ejs-compiled-loader": "^2.1.1",
     "eslint": "^3.3.1",
@@ -24,6 +25,8 @@
     "glob": "^7.0.5",
     "gulp": "^3.9.1",
     "gulp-ejs": "^2.2.1",
+    "gulp-env": "^0.4.0",
+    "gulp-nodemon": "^2.2.1",
     "gulp-util": "^3.0.7",
     "html-webpack-plugin": "^2.22.0",
     "json-loader": "^0.5.4",
@@ -49,6 +52,7 @@
     "koa-router": "^5.4.0",
     "koa-static": "^2.0.0",
     "lodash": "^4.16.3",
+    "nodemon": "^1.11.0",
     "pm2": "^2.0.18",
     "react": "^15.3.1",
     "react-css-modules": "^3.7.10",
@@ -63,7 +67,7 @@
     "xtpl": "^3.3.0"
   },
   "scripts": {
-    "start": "pm2 start pm2_config.json",
+    "start": "gulp server:dev",
     "dev": "gulp dev",
     "build": "gulp build",
     "dll": "webpack --config webpack.dll.config",
