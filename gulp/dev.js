@@ -31,8 +31,31 @@ module.exports = function (gulp) {
   });
   gulp.task('generate-dev-template', function (cb) {
     var injectSrc = require('./modules/injectSrc');
-    gulp.src('./src/pages/*/index.html').pipe(ejs()).pipe(injectSrc(['index.js'], 'http://localhost:8080/pages')).pipe(gulp.dest('./build/pages/'));
+    var param = {
+      htmlWebpackPlugin: {
+        options: {
+          data: {
+            origin: 'server'
+          }
+        }
+      }
+    };
+    gulp.src('./src/pages/*/index.html').pipe(ejs(param)).pipe(injectSrc(['index.js'], 'http://localhost:8080/pages')).pipe(gulp.dest('./build/pages/'));
     cb();
   });
-  gulp.task('dev', ['webpack-dev-server', 'generate-dev-template']);
+  gulp.task('generate-root-entry', function (cb) {
+    var injectSrc = require('./modules/injectSrc');
+    var param = {
+      htmlWebpackPlugin: {
+        options: {
+          data: {
+            origin: 'client'
+          }
+        }
+      }
+    };
+    gulp.src('./src/pages/mainpage/index.html').pipe(ejs(param)).pipe(injectSrc(['index.js'], 'http://localhost:8080/pages')).pipe(gulp.dest('./build'));
+    cb();
+  });
+  gulp.task('dev', ['webpack-dev-server', 'generate-dev-template', 'generate-root-entry']);
 };

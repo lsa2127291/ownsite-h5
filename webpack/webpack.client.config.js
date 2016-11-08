@@ -14,6 +14,9 @@ var js = glob.sync('./src/pages/*/index.js').reduce(function (prev, curr) {
 }, {});
 var html = glob.sync('./src/pages/**/*.html').map(function (item) {
   return new HtmlWebpackPlugin({
+    data: {
+      origin: 'client'
+    },
     filename: item.substr(6),
     template: 'ejs-compiled!' + item,
     inject: true,

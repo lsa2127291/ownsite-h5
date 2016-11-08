@@ -3,7 +3,6 @@ var env = require('gulp-env');
 module.exports = function (gulp) {
   gulp.task('nodemon', function (cb) {
     var started = false;
-    process.env.STARTED = false;
     return nodemon({
       script: 'server/index.js',
       watch: ["src", "server"],

@@ -5,8 +5,12 @@
   <title>首页</title>
 </head>
 <body>
+<% if (htmlWebpackPlugin.options.data.origin === 'server') { %>
 <div id="main">{{{ html }}}</div>
 <script>window.INITIAL_STATE  = {{{ initState }}}</script>
+<% } else { %>
+<div id="main"></div>
+<% } %>
 <%- include ../../mods/vendor-scripts.html -%>
 </body>
 </html>

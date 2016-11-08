@@ -10,8 +10,8 @@ function receivePosts (articles) {
     articles
   };
 }
-export function queryArticles () {
-  return dispatch => fetch(HOST + '/article/list', {
+export function queryArticles (page = 1, item = 10) {
+  return dispatch => fetch(HOST + '/article/list?page=' + page + '&item=' + item, {
     method: 'GET'
   }).then(res => res.json(), err => {
     console.log('err', err);

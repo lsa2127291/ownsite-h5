@@ -7,6 +7,10 @@ fs.readdirSync('node_modules').filter(function (x) {
 }).forEach(function (mod) {
   nodeModules[mod] = 'commonjs' + mod;
 });
+var cssModulesLoader = ['style',
+      'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+      'resolve-url',
+      'sass'].join('!');
 module.exports = {
   entry: {
     server: [
@@ -18,7 +22,7 @@ module.exports = {
     path: path.resolve('./build'),
     filename: 'server.js'
   },
-  target: 'node', //
+  target: 'node',
   externals: nodeModules,
   resolve: {
     root: [
@@ -33,10 +37,12 @@ module.exports = {
     }, {
       test: /\.json$/,
       loader: 'json'
+    }, {
+      test: /\.scss$/,
+      loader: cssModulesLoader
     }]
   },
   plugins: [
-    new webpack.IgnorePlugin(/\.(css|scss|less)$/),
     new webpack.BannerPlugin('require("source-map-support").install();',
       { raw: true, entryOnly: false }),
     new webpack.HotModuleReplacementPlugin({ quiet: true })
