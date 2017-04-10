@@ -53,7 +53,11 @@ module.exports = function (options, basePath) {
       this.emit('error', new PluginError(PLUGIN_NAME, 'Streams are not supported!'));
       return cb();
     }
-    var dirs = file.path.split('\\');
+    var os = require('os');
+    var dirs;
+    if (os.platform() === 'win32')
+      dirs = file.path.split('\\');
+    else dirs = file.path.split('/');
     basePath += '/' + dirs[dirs.length - 2];
     var html = file.contents.toString();
     html = _injectSrc(_genSrc(options, basePath), html);
